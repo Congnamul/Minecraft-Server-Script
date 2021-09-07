@@ -1,0 +1,67 @@
+options:
+	s : &6[&e시스템&6]&f
+
+command /채팅 [<string>] [<string>] [<offlineplayer>]:
+	trigger:
+		if arg 1 is "청소" or "얼리기" or "녹이기" or "금지":
+			if arg 1 is "청소":
+				if arg 2 is not set:
+					loop 100 times:
+						message "" to player
+					message "{@s} 채팅창이 청소되었습니다." to player
+				else:
+					if player is op:
+						if arg 2 is "전체":
+							loop 100 times:
+								broadcast ""
+							broadcast "{@s} 관리자가 채팅창을 청소하였습니다."
+					else:
+						message "{@s} 권한이 없습니다."
+			if arg 1 is "얼리기":
+				if player is op:
+					set {채팅::얼리기} to true
+					broadcast "{@s} 관리자가 채팅창을 얼렸습니다!"
+					broadcast "{@s} 지금부터 채팅이 금지됩니다."
+				else:
+					message "{@s} 권한이 없습니다."
+			if arg 1 is "녹이기":
+				if player is op:
+					set {채팅::얼리기} to false
+					broadcast "{@s} 관리자가 채팅창을 녹였습니다!"
+					broadcast "{@s} 지금부터 채팅이 허용됩니다."
+				else:
+					message "{@s} 권한이 없습니다."
+			if arg 1 is "금지":
+				if player is op:
+					if arg 2 is set:
+						if arg 3 is set:
+							set {채팅::ban::%arg 3%::초} to arg 2 parsed as integer
+							set {채팅::ban::%arg 3%} to true
+							message "{@s} %arg 3%님의 채팅을 %arg 2%초간 금지시켰습니다!"
+							broadcast "{@s} 관리자가 %arg 3%님의 채팅을 %arg 2%초간 금지시켰습니다!"
+		else:
+			if player is op:
+				message "{@s} /채팅 청소 - 개인 채팅을 청소합니다."
+				message "{@s} /채팅 청소 전체 - 월드 채팅을 청소합니다."
+				message "{@s} /채팅 [얼리기/녹이기] - 채팅창을 금지/허용 시킵니다."
+				message "{@s} /채팅 금지 [지속시간] [닉네임] - 채팅을 일정시간동안 금지시킵니다."
+			else:
+				message "{@s} /채팅 청소 - 개인 채팅을 청소합니다."
+
+
+every 1 seconds:
+	loop all players:
+		if {채팅::ban::%loop-player%::초} is set:
+			subtract 1 from {채팅::ban::%loop-player%::초}
+			if {채팅::ban::%loop-player%::초} = -1:
+				delete {채팅::ban::%loop-player%::초}
+				message "{@s} 채팅금지가 해제되었습니다." to loop-player
+
+
+on chat:
+	if {채팅::얼리기} is true:
+		if player is not op:
+			cancel event
+	if {채팅::ban::%player%::초} is set:
+		cancel event
+		message "{@s} 채팅금지 남은시간 %{채팅::ban::%player%::초}%초 입니다."
