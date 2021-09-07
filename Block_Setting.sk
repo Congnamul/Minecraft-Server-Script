@@ -1,0 +1,17 @@
+on place:
+	if {블럭설치} is false:
+		cancel event
+		message "&4블럭설치 금지입니다."
+
+
+command /블럭설치 [<string>]:
+	trigger:
+		if player is op:
+			if arg 1 is "비허용":
+				set {블럭설치} to false
+				message "&3블럭설치 비허용됨"
+			if arg 1 is "허용":
+				set {블럭설치} to true
+				message "&3블럭설치 허용됨"
+			if arg 1 is not "허용" or "비허용":
+				message "명령어 사용법 : /블럭설치 [허용/비허용]"

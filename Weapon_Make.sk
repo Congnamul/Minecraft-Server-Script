@@ -1,0 +1,508 @@
+ 
+
+options:
+	s : &6[&e시스템&6]&f
+
+#-----------------------------Weapon-----------------------------#
+
+command /Weapon [<text>]:
+	trigger:
+		if player is op:
+			give player blaze powder named "&c&l랜덤 무기제작" with lore "" and "아이템을 우클릭하여 무기제작을 시작하세요!"
+			
+					
+on right click with blaze powder:
+	if name of player's tool contains "&c&l랜덤 무기제작":
+		if name of player's tool contains "&c&l랜덤 무기제작":
+			set {_name} to player's tool
+			wait 1 tick
+			replace all " " and "아이템을 우클릭하여 무기제작을 시작하세요!" with "" in {_main::2}
+			remove 1 of {_name} from player's inventory
+			set {upgrade::number} to 0
+			set {dejangjang::al} to 1
+		open chest with 5 rows named "&c&l[ 랜덤 무기 제작 ]" to player
+		set slot 0 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 1 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 2 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 3 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 4 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 5 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 6 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 7 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 8 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 9 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 10 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 11 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 12 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 13 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 14 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 15 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 16 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 17 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 18 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 19 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 20 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 21 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 22 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 23 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 24 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 25 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 26 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 27 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 28 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 29 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 30 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 31 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 32 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 33 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 34 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 35 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 36 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 37 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 38 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 39 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 40 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 41 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 42 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 43 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 44 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 45 of current inventory of player to black stained glass pane named "&f." with lore " "
+
+
+on inventory click:
+	if iname contains "&c&l[ 랜덤 무기 제작 ]":
+		if clicked raw slot is not 12 or 19 or 20 or 21 or 22 or 23 or 24 or 25 or 30:
+			cancel event
+			close player's inventory
+			play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+			message "{@s} &c&l무기제작에 실패하였습니다." to player
+		if clicked raw slot is 12 or 19 or 20 or 21 or 22 or 23 or 24 or 25 or 30:
+			cancel event
+
+on inventory click:
+	if iname contains "&c&l[ 대장장이 무기 ]":
+		if clicked raw slot is 12:
+			cancel event
+			if {upgrade::number} is 0:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 12 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+		else if clicked raw slot is 19:
+			cancel event
+			if {upgrade::number} is 1:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 19 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+		else if clicked raw slot is 20:
+			cancel event
+			if {upgrade::number} is 2:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 20 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+		else if clicked raw slot is 21:
+			cancel event
+			if {upgrade::number} is 3:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 21 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+		else if clicked raw slot is 22:
+			cancel event
+			if {upgrade::number} is 4:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 22 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+		else if clicked raw slot is 23:
+			cancel event
+			if {upgrade::number} is 5:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 23 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+		else if clicked raw slot is 24:
+			cancel event
+			if {upgrade::number} is 6:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 24 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+		else if clicked raw slot is 25:
+			cancel event
+			if {upgrade::number} is 7:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 25 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+		else if clicked raw slot is 30:
+			cancel event
+			if {upgrade::number} is 8:
+				set {upgrade::number} to 0
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 30 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+				wait 20 ticks
+				set {_random} to random integer between 1 and 100
+				if {dejangjang::al} is 1: #1차
+					if {_random} is between 1 and 50: #50
+						give player iron sword named "&a&l완성된 무기" with lore "" and "[망작]"
+						set {dejangjang::al} to 0
+					if {_random} is between 51 and 80: #30
+						give player iron sword named "&a&l완성된 무기" with lore "" and "[수작]"
+						set {dejangjang::al} to 0
+					if {_random} is between 81 and 95: #15
+						give player iron sword named "&a&l완성된 무기" with lore "" and "[걸작]"
+						set {dejangjang::al} to 0
+					if {_random} is between 96 and 100: #5
+						give player iron sword named "&a&l완성된 무기" with lore "" and "[명작]"
+						set {dejangjang::al} to 0
+				close player's inventory
+				play sound "entity_player_levelup" with volume 1 and pitch 1.5 at player
+				message "{@s} &a&l무기 제작에 성공하였습니다!"
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l무기제작에 실패하였습니다." to player
+
+
+
+#-----------------------------Armor-----------------------------#
+
+
+command /armor [<text>]:
+	trigger:
+		if player is op:
+			give player blaze powder named "&9&l랜덤 방어구제작&71차" with lore "" and "아이템을 우클릭하여 방어구제작을 시작하세요!"
+
+
+							
+on right click with blaze powder:
+	if name of player's tool contains "&9&l랜덤 방어구제작":
+		if name of player's tool contains "&9&l랜덤 방어구제작":
+			set {_name} to player's tool
+			wait 1 tick
+			replace all " " and "아이템을 우클릭하여 무기제작을 시작하세요!" with "" in {_main::2}
+			remove 1 of {_name} from player's inventory
+			set {upgrade::number} to 0
+			set {dejangjang::al} to 1
+		open chest with 6 rows named "&c&l[ 랜덤 방어구 제작 ]" to player
+		set slot 0 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 1 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 2 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 3 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 4 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 5 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 6 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 7 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 8 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 9 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 10 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 11 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 12 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 13 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 14 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 15 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 16 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 17 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 18 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 19 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 20 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 21 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 22 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 23 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 24 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 25 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 26 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 27 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 28 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 29 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 30 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 31 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 32 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 33 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 34 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 35 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 36 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 37 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 38 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 39 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 40 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 41 of current inventory of player to brick named "&7&l제작하기" with lore " "
+		set slot 42 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 43 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 44 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 45 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 46 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 47 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 48 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 49 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 50 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 51 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 52 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 53 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 54 of current inventory of player to black stained glass pane named "&f." with lore " "
+		set slot 55 of current inventory of player to black stained glass pane named "&f." with lore " "
+
+on inventory click:
+	if iname contains "&c&l[ 랜덤 방어구 제작 ]":
+		if clicked raw slot is not 11 or 12 or 14 or 15 or 20 or 21 or 22 or 23 or 24 or 29 or 30 or 31 or 32 or 33 or 39 or 40 or 41:
+			cancel event
+			close player's inventory
+			play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+			message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 11 or 12 or 14 or 15 or 20 or 21 or 22 or 23 or 24 or 29 or 30 or 31 or 32 or 33 or 39 or 40 or 41:
+			cancel event
+
+
+
+on inventory click:
+	if iname contains "&c&l[ 랜덤 방어구 제작 ]":
+		if clicked raw slot is 11:
+			cancel event
+			if {upgrade::number} is 0:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 11 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 12:
+			cancel event
+			if {upgrade::number} is 1:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 12 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 14:
+			cancel event
+			if {upgrade::number} is 2:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 14 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 15:
+			cancel event
+			if {upgrade::number} is 3:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 15 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 20:
+			cancel event
+			if {upgrade::number} is 4:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 20 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 21:
+			cancel event
+			if {upgrade::number} is 5:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 21 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 22:
+			cancel event
+			if {upgrade::number} is 6:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 22 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 23:
+			cancel event
+			if {upgrade::number} is 7:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 23 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 24:
+			cancel event
+			if {upgrade::number} is 8:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 24 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 29:
+			cancel event
+			if {upgrade::number} is 9:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 29 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 30:
+			cancel event
+			if {upgrade::number} is 10:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 30 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 31:
+			cancel event
+			if {upgrade::number} is 11:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 31 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 32:
+			cancel event
+			if {upgrade::number} is 12:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 32 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 33:
+			cancel event
+			if {upgrade::number} is 13:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 33 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 39:
+			cancel event
+			if {upgrade::number} is 14:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 39 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 40:
+			cancel event
+			if {upgrade::number} is 15:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 40 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+		if clicked raw slot is 41:
+			cancel event
+			if {upgrade::number} is 16:
+				add 1 to {upgrade::number}
+				play sound "block_anvil_place" with volume 0.3 and pitch 1.3 at player
+				set slot 41 of current inventory of player to iron ingot named "&a&l완료" with lore " "
+				wait 20 ticks
+				set {_random} to random integer between 1 and 100
+				set {_ramdom} to random integer between 1 and 3
+				if {dejangjang::al} is 1: #1차
+					if {_ramdom} is 1: #갑옷
+						if {_random} is between 1 and 50: #50
+							give player iron chestplate named "&a&l완성된 갑옷" with lore "" and "[망작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 51 and 80: #30
+							give player iron chestplate named "&a&l완성된 갑옷" with lore "" and "[수작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 81 and 95: #15
+							give player iron chestplate named "&a&l완성된 갑옷" with lore "" and "[걸작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 96 and 100: #5
+							give player iron chestplate named "&a&l완성된 갑옷" with lore "" and "[명작]"
+							set {dejangjang::al} to 0
+					if {_ramdom} is 2: #바지
+						if {_random} is between 1 and 50: #50
+							give player iron leggings named "&a&l완성된 바지" with lore "" and "[망작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 51 and 80: #30
+							give player iron leggings named "&a&l완성된 바지" with lore "" and "[수작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 81 and 95: #15
+							give player iron leggings named "&a&l완성된 바지" with lore "" and "[걸작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 96 and 100: #5
+							give player iron leggings named "&a&l완성된 바지" with lore "" and "[명작]"
+							set {dejangjang::al} to 0
+					if {_ramdom} is 3: #신발
+						if {_random} is between 1 and 50: #50
+							give player iron boots named "&a&l완성된 신발" with lore "" and "[망작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 51 and 80: #30
+							give player iron boots named "&a&l완성된 신발" with lore "" and "[수작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 81 and 95: #15
+							give player iron boots named "&a&l완성된 신발" with lore "" and "[걸작]"
+							set {dejangjang::al} to 0
+						if {_random} is between 96 and 100: #5
+							give player iron boots named "&a&l완성된 신발" with lore "" and "[명작]"
+							set {dejangjang::al} to 0
+				close player's inventory
+				play sound "entity_player_levelup" with volume 1 and pitch 1.5 at player
+				message "{@s} &a&l방어구 제작에 성공하였습니다!"
+			else:
+				close player's inventory
+				play sound "entity_generic_explode" with volume 0.5 and pitch 1.5 at player
+				message "{@s} &c&l방어구 제작에 실패하였습니다." to player
+
+
+
+
+
+
+

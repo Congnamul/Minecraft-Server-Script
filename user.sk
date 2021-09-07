@@ -1,0 +1,74 @@
+# 유저정보 열람 시스템
+
+options:
+	s : &6[&e시스템&6]&f
+
+command /user [<player>]:
+	trigger:
+		if arg 1 is not set:
+			send "{@s} &f사용법 &7: &3/user < player >"
+			stop
+		if arg 1 is set:
+			set {%player%.lv} to player's level
+			wait 1 tick
+			open chest with 6 row named "&f&l[ &6&l%arg 1% 님의 정보 &f&l]" to player
+			set slot 0 of player's current inventory to white stained glass pane named " "
+			set slot 1 of player's current inventory to white stained glass pane named " "
+			set slot 2 of player's current inventory to white stained glass pane named " "
+			set slot 3 of player's current inventory to white stained glass pane named " "
+			set slot 4 of player's current inventory to player Head named "&7&l정보" with lore "&b&l%arg 1%"
+			set slot 5 of player's current inventory to white stained glass pane named " "
+			set slot 6 of player's current inventory to white stained glass pane named " "
+			set slot 7 of player's current inventory to white stained glass pane named " "
+			set slot 8 of player's current inventory to white stained glass pane named " "
+			set slot 9 of player's current inventory to white stained glass pane named " "
+			set slot 10 of player's current inventory to white stained glass pane named " "
+			set slot 11 of player's current inventory to white stained glass pane named " "
+			set slot 12 of player's current inventory to white stained glass pane named " "
+			set slot 13 of player's current inventory to white stained glass pane named " "
+			set slot 14 of player's current inventory to white stained glass pane named " "
+			set slot 16 of player's current inventory to white stained glass pane named " "
+			set slot 17 of player's current inventory to white stained glass pane named " "
+			set slot 18 of player's current inventory to white stained glass pane named " "
+			set slot 19 of player's current inventory to white stained glass pane named " "
+			set slot 21 of player's current inventory to white stained glass pane named " "
+			set slot 22 of player's current inventory to Bottle o' Enchanting named "&6Level : %{%player%.lv}%"
+			set slot 15 of player's current inventory to helmet of arg 1 named "%name of arg 1's helmet%"
+			set slot 24 of player's current inventory to chestplate of arg 1 named "%name of arg 1's chestplate%"
+			set slot 33 of player's current inventory to leggings of arg 1 named "%name of arg 1's leggings%"
+			set slot 42 of player's current inventory to boots of arg 1 named "%name of arg 1's boots%"
+			set slot 23 of player's current inventory to white stained glass pane named " "
+			set slot 20 of player's current inventory to tool of arg 1 named "%name of arg 1's held item%"
+			set slot 25 of player's current inventory to white stained glass pane named " "
+			set slot 26 of player's current inventory to white stained glass pane named " "
+			set slot 27 of player's current inventory to white stained glass pane named " "
+			set slot 28 of player's current inventory to white stained glass pane named " "
+			set slot 29 of player's current inventory to white stained glass pane named " "
+			set slot 30 of player's current inventory to white stained glass pane named " "
+			set slot 31 of player's current inventory to white stained glass pane named " "
+			set slot 32 of player's current inventory to white stained glass pane named " "
+			set slot 34 of player's current inventory to white stained glass pane named " "
+			set slot 35 of player's current inventory to white stained glass pane named " "
+			set slot 36 of player's current inventory to white stained glass pane named " "
+			set slot 37 of player's current inventory to white stained glass pane named " "
+			set slot 38 of player's current inventory to white stained glass pane named " "
+			set slot 39 of player's current inventory to white stained glass pane named " "
+			set slot 40 of player's current inventory to white stained glass pane named " "
+			set slot 41 of player's current inventory to white stained glass pane named " "
+			set slot 43 of player's current inventory to white stained glass pane named " "
+			set slot 44 of player's current inventory to white stained glass pane named " "
+			set slot 45 of player's current inventory to white stained glass pane named " "
+			set slot 46 of player's current inventory to white stained glass pane named " "
+			set slot 47 of player's current inventory to white stained glass pane named " "
+			set slot 48 of player's current inventory to white stained glass pane named " "
+			set slot 49 of player's current inventory to white stained glass pane named " "
+			set slot 50 of player's current inventory to white stained glass pane named " "
+			set slot 51 of player's current inventory to white stained glass pane named " "
+			set slot 52 of player's current inventory to white stained glass pane named " "
+			set slot 53 of player's current inventory to white stained glass pane named " "
+			stop
+			
+on inventory click:
+	if inventory name of player's current inventory contains "님의 정보":
+		cancel event
+

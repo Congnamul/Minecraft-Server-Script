@@ -1,0 +1,42 @@
+# PVP관리 및 관리아이템제작 #
+
+on damage of a player:
+	if {pvp사용} is false:
+		if damager is player:
+			cancel event
+			send action bar "&bpvp 비허용 상태입니다!" to damager
+
+command /pvp [<string>]:
+	trigger:
+		if player is op:
+			if arg 1 is "비허용":
+				set {pvp사용} to false
+				message "&cpvp 비허용됨"
+			if arg 1 is "허용":
+				set {pvp사용} to true
+				message "&cpvp 허용됨"
+			if arg 1 is "허용권":
+				give player book named "&c&lpvp 허용권 "
+			if arg 1 is "비허용권":
+				give player book named "&a&lpvp 비허용권 "
+			if arg 1 is not "허용" or "비허용" or "허용권" or "비허용권":
+				message "명령어 사용법 : /pvp [허용/비허용/허용권/비허용권]"
+
+on right click with book:
+	if name of player's tool contains "&c&lpvp 허용권":
+		set {_name} to player's tool
+		set {_main::*} to uncolored lore of player's tool
+		wait 1 tick
+		remove 1 of {_name} from player's inventory
+		set {pvp사용} to true
+		broadcast "{@s} %player%님이 &c&lPVP허용권을 &f사용했습니다!"
+
+
+on right click with book:
+	if name of player's tool contains "&a&lpvp 비허용권":
+		set {_name} to player's tool
+		set {_main::*} to uncolored lore of player's tool
+		wait 1 tick
+		remove 1 of {_name} from player's inventory
+		set {pvp사용} to false
+		broadcast "{@s} %player%님이 &a&lPVP비허용권을 &f사용했습니다!"
